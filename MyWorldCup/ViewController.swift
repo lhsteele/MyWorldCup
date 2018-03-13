@@ -45,44 +45,64 @@ class GroupsCell: UICollectionViewCell {
         setupViews()
     }
     
-    let groupNameView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.backgroundColor = UIColor.gray
-        imageView.layer.cornerRadius = 10
-        imageView.clipsToBounds = true
-        return imageView
+    let groupName: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "A"
+        label.textColor = UIColor.black
+        label.textAlignment = .center
+        label.backgroundColor = UIColor.gray
+        label.layer.cornerRadius = 15
+        label.clipsToBounds = true
+        return label
     }()
     
-    let team1: UIImageView = {
-        let imageView = UIImageView()
-        imageView.backgroundColor = UIColor.blue
-        imageView.layer.cornerRadius = 15
-        imageView.clipsToBounds = true
-        return imageView
+    let team1: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Egypt"
+        label.textColor = UIColor.black
+        label.textAlignment = .center
+        label.backgroundColor = UIColor.orange
+        label.layer.cornerRadius = 15
+        label.clipsToBounds = true
+        return label
     }()
     
-    let team2: UIImageView = {
-        let imageView = UIImageView()
-        imageView.backgroundColor = UIColor.blue
-        imageView.layer.cornerRadius = 15
-        imageView.clipsToBounds = true
-        return imageView
+    let team2: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Russia"
+        label.textColor = UIColor.black
+        label.textAlignment = .center
+        label.backgroundColor = UIColor.orange
+        label.layer.cornerRadius = 15
+        label.clipsToBounds = true
+        return label
     }()
     
-    let team3: UIImageView = {
-        let imageView = UIImageView()
-        imageView.backgroundColor = UIColor.blue
-        imageView.layer.cornerRadius = 15
-        imageView.clipsToBounds = true
-        return imageView
+    let team3: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Saudi Arabia"
+        label.textColor = UIColor.black
+        label.textAlignment = .center
+        label.backgroundColor = UIColor.orange
+        label.layer.cornerRadius = 15
+        label.clipsToBounds = true
+        return label
     }()
     
-    let team4: UIImageView = {
-        let imageView = UIImageView()
-        imageView.backgroundColor = UIColor.blue
-        imageView.layer.cornerRadius = 15
-        imageView.clipsToBounds = true
-        return imageView
+    let team4: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Uruguay"
+        label.textColor = UIColor.black
+        label.textAlignment = .center
+        label.backgroundColor = UIColor.orange
+        label.layer.cornerRadius = 15
+        label.clipsToBounds = true
+        return label
     }()
     
     //This is to put the line in between cells, take out later.
@@ -93,19 +113,19 @@ class GroupsCell: UICollectionViewCell {
     }()
     
     func setupViews() {
-        addSubview(groupNameView)
+        addSubview(groupName)
         addSubview(team1)
         addSubview(team2)
         addSubview(team3)
         addSubview(team4)
         addSubview(separatorView)
         
-        addConstraintsWithFormat(format: "H:|-16-[v0]-16-|", views: groupNameView)
+        addConstraintsWithFormat(format: "H:|-16-[v0]-16-|", views: groupName)
         addConstraintsWithFormat(format: "H:|-16-[v0]-16-|", views: team1)
         addConstraintsWithFormat(format: "H:|-16-[v0]-16-|", views: team2)
         addConstraintsWithFormat(format: "H:|-16-[v0]-16-|", views: team3)
         addConstraintsWithFormat(format: "H:|-16-[v0]-16-|", views: team4)
-        addConstraintsWithFormat(format: "V:|-16-[v0(30)]-8-[v1(50)]-8-[v2(50)]-8-[v3(50)]-8-[v4(50)]-16-[v5(1)]|", views: groupNameView, team1, team2, team3, team4, separatorView)
+        addConstraintsWithFormat(format: "V:|-16-[v0(30)]-8-[v1(50)]-8-[v2(50)]-8-[v3(50)]-8-[v4(50)]-16-[v5(1)]|", views: groupName, team1, team2, team3, team4, separatorView)
         addConstraintsWithFormat(format: "H:|[v0]|", views: separatorView)
     }
     
