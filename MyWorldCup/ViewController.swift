@@ -48,7 +48,6 @@ class GroupsCell: UICollectionViewCell {
     let thumbnailImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor = UIColor.gray
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
@@ -56,7 +55,6 @@ class GroupsCell: UICollectionViewCell {
     let separatorView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.black
-        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
@@ -64,17 +62,9 @@ class GroupsCell: UICollectionViewCell {
         addSubview(thumbnailImageView)
         addSubview(separatorView)
         
-        //Adding constraints programmatically:
-        //The H/V refers to Horizontal/Vertical
-        //the -16- means it is 16 pixels from the left or right edge
-        //the[v0] means view 0
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-16-[v0]-16-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": thumbnailImageView]))
-        //addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-16-[v0]-16-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": thumbnailImageView, "v1": separatorView]))
-        
+        addConstraintsWithFormat(format: "H:|-16-[v0]-16-|", views: thumbnailImageView)
         addConstraintsWithFormat(format: "V:|-16-[v0]-16-[v1(1)]|", views: thumbnailImageView, separatorView)
-        
-        //both of these H and V don't have any constraints. H runs the whole width of the view, and V is 1 pixel high but no constraint.
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": separatorView]))
+        addConstraintsWithFormat(format: "H:|[v0]|", views: separatorView)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -82,11 +72,13 @@ class GroupsCell: UICollectionViewCell {
     }
 }
 
+//this extension allows us to simplify the code above for setting constraints.
 extension UIView {
     func addConstraintsWithFormat(format: String, views: UIView...) {
         var viewsDictionary = [String: UIView]()
         for (index, view) in views.enumerated() {
             let key = "v\(index)"
+            view.translatesAutoresizingMaskIntoConstraints = false
             viewsDictionary[key] = view
         }
         
