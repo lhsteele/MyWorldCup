@@ -31,7 +31,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: 200)
+        return CGSize(width: view.frame.width, height: 294)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -45,9 +45,33 @@ class GroupsCell: UICollectionViewCell {
         setupViews()
     }
     
-    let thumbnailImageView: UIImageView = {
+    let groupNameView: UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor = UIColor.gray
+        return imageView
+    }()
+    
+    let team1: UIImageView = {
+        let imageView = UIImageView()
+        imageView.backgroundColor = UIColor.blue
+        return imageView
+    }()
+    
+    let team2: UIImageView = {
+        let imageView = UIImageView()
+        imageView.backgroundColor = UIColor.blue
+        return imageView
+    }()
+    
+    let team3: UIImageView = {
+        let imageView = UIImageView()
+        imageView.backgroundColor = UIColor.blue
+        return imageView
+    }()
+    
+    let team4: UIImageView = {
+        let imageView = UIImageView()
+        imageView.backgroundColor = UIColor.blue
         return imageView
     }()
     
@@ -59,11 +83,19 @@ class GroupsCell: UICollectionViewCell {
     }()
     
     func setupViews() {
-        addSubview(thumbnailImageView)
+        addSubview(groupNameView)
+        addSubview(team1)
+        addSubview(team2)
+        addSubview(team3)
+        addSubview(team4)
         addSubview(separatorView)
         
-        addConstraintsWithFormat(format: "H:|-16-[v0]-16-|", views: thumbnailImageView)
-        addConstraintsWithFormat(format: "V:|-16-[v0]-16-[v1(1)]|", views: thumbnailImageView, separatorView)
+        addConstraintsWithFormat(format: "H:|-16-[v0]-16-|", views: groupNameView)
+        addConstraintsWithFormat(format: "H:|-16-[v0]-16-|", views: team1)
+        addConstraintsWithFormat(format: "H:|-16-[v0]-16-|", views: team2)
+        addConstraintsWithFormat(format: "H:|-16-[v0]-16-|", views: team3)
+        addConstraintsWithFormat(format: "H:|-16-[v0]-16-|", views: team4)
+        addConstraintsWithFormat(format: "V:|-16-[v0(30)]-8-[v1(50)]-8-[v2(50)]-8-[v3(50)]-8-[v4(50)]-16-[v5(1)]|", views: groupNameView, team1, team2, team3, team4, separatorView)
         addConstraintsWithFormat(format: "H:|[v0]|", views: separatorView)
     }
     
