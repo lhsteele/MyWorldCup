@@ -46,8 +46,27 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         collectionView?.contentInset = UIEdgeInsetsMake(50, 0, 0, 0)
         collectionView?.scrollIndicatorInsets = UIEdgeInsetsMake(50, 0, 0, 0)
         
-        
         setupMenuBar()
+        setupNavBarButtons()
+    }
+    
+    func setupNavBarButtons() {
+        let searchImage = UIImage(named: "search")
+        let searchBarButtonItem = UIBarButtonItem(image: searchImage, style: .plain, target: self, action: #selector(handleSearch))
+        
+        let listButton = UIBarButtonItem(image: UIImage(named: "list"), style: .plain, target: self, action: #selector(handleMore))
+        searchBarButtonItem.tintColor = UIColor.white
+        listButton.tintColor = UIColor.white
+        
+        navigationItem.rightBarButtonItems = [listButton, searchBarButtonItem]
+    }
+    
+    @objc func handleSearch() {
+        print (123)
+    }
+    
+    @objc func handleMore() {
+        
     }
     
     let menuBar: MenuBar = {
