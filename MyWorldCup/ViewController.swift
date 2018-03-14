@@ -8,6 +8,23 @@
 
 import UIKit
 
+class BaseCell: UICollectionViewCell {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupViews()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setupViews() {
+        
+    }
+    
+    
+}
+
 class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
     override func viewDidLoad() {
@@ -64,7 +81,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
 }
 
-class GroupsCell: UICollectionViewCell {
+class GroupsCell: BaseCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
@@ -137,7 +154,7 @@ class GroupsCell: UICollectionViewCell {
         return view
     }()
     
-    func setupViews() {
+    override func setupViews() {
         addSubview(groupName)
         addSubview(team1)
         addSubview(team2)
