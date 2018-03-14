@@ -48,6 +48,34 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         
         setupMenuBar()
         setupNavBarButtons()
+        fetchData()
+    }
+    
+    func fetchData() {
+        let url = NSURL(string: "https://raw.githubusercontent.com/opendatajson/football.json/master/2017-18/en.1.clubs.json")
+        
+        URLSession.shared.dataTask(with: url! as URL) { (data, response, error)
+            in
+            if error != nil {
+                print (error)
+                return
+            }
+            
+            do {
+                let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers)
+                
+                print (json)
+                /*
+                for dictionary in json as! [[String: AnyObject]] {
+                    let club = dictionary["name"] as? String
+                    print (club)
+                }
+                */
+                self.collectionView?.reloadData()
+            } catch let jsonError {
+                print (jsonError)
+            }
+        } .resume()
     }
     
     func setupNavBarButtons() {
