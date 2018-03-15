@@ -8,6 +8,15 @@
 
 import UIKit
 
+struct EPL : Decodable {
+    let clubs : [Clubs]
+}
+
+struct Clubs: Decodable {
+    let name : String
+    let code : String
+}
+
 class BaseCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -52,26 +61,25 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
     
     func fetchData() {
-        let url = NSURL(string: "https://raw.githubusercontent.com/opendatajson/football.json/master/2017-18/en.1.clubs.json")
+        let jsonURLString = "https://raw.githubusercontent.com/opendatajson/football.json/master/2016-17/en.1.clubs.json"
         
-        URLSession.shared.dataTask(with: url! as URL) { (data, response, error)
+        guard let url = URL(string: jsonURLString) else { return }
+        
+        URLSession.shared.dataTask(with: url) { (data, response, error)
             in
             if error != nil {
                 print (error)
                 return
             }
+            guard let data = data else { return }
             
             do {
-                let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers)
+                let item = try JSONDecoder().decode(EPL.self, from: data)
+                print (item.clubs)
                 
-                print (json)
-                /*
-                for dictionary in json as! [[String: AnyObject]] {
-                    let club = dictionary["name"] as? String
-                    print (club)
-                }
-                */
-                self.collectionView?.reloadData()
+                //print (json)
+                
+                //self.collectionView?.reloadData()
             } catch let jsonError {
                 print (jsonError)
             }
@@ -105,7 +113,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     private func setupMenuBar() {
         view.addSubview(menuBar)
         view.addConstraintsWithFormat(format: "H:|[v0]|", views: menuBar)
-        view.addConstraintsWithFormat(format: "V:|[v0(50)]|", views: menuBar)
+        view.addConstraintsWithFormat(format: "V:[v0(50)]", views: menuBar)
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
