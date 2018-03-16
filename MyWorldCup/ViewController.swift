@@ -9,12 +9,21 @@
 import UIKit
 
 struct EPL : Decodable {
-    let clubs : [Clubs]
-}
-
-struct Clubs: Decodable {
     let name : String
-    let code : String
+    let clubs : [Clubs]
+    
+    enum CodingKeys: String, CodingKey {
+        case name, clubs
+    }
+    
+    struct Clubs: Decodable {
+        let name : String
+        let code : String
+        
+        enum CodingKeys: String, CodingKey {
+            case name, code
+        }
+    }
 }
 
 class BaseCell: UICollectionViewCell {
@@ -74,16 +83,17 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
             guard let data = data else { return }
             
             do {
-                let item = try JSONDecoder().decode(EPL.self, from: data)
-                print (item.clubs)
-                
-                //print (json)
+                let eplResults = try JSONDecoder().decode(EPL.self, from: data)
+                for item in eplResults.clubs {
+                    print (item.name)
+                }
                 
                 //self.collectionView?.reloadData()
             } catch let jsonError {
                 print (jsonError)
             }
         } .resume()
+        
     }
     
     func setupNavBarButtons() {
