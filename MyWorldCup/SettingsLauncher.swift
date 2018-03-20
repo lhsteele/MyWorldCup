@@ -35,6 +35,8 @@ class SettingsLauncher: NSObject, UICollectionViewDelegate, UICollectionViewData
         return [Setting(name: "Settings", imageName: "settings1"), Setting(name: "Terms & Privacy", imageName: "mario"), Setting(name: "Send Feedback", imageName: "toad"), Setting(name: "Switch Account", imageName: "bowser"), Setting(name: "Cancel", imageName: "yoshi")]
     }()
     
+    var homeController: HomeController? 
+    
     @objc func showSettings() {
         if let window = UIApplication.shared.keyWindow {
             
@@ -85,6 +87,19 @@ class SettingsLauncher: NSObject, UICollectionViewDelegate, UICollectionViewData
     //collection Views have a default setting for spacing. This reduces the spacing in between cells.
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.blackView.alpha = 0
+            if let window = UIApplication.shared.keyWindow {
+                self.collectionView.frame = CGRect(x: 0, y: window.frame.height, width: self.collectionView.frame.width, height: self.collectionView.frame.height)
+            }
+        }) { (completed: Bool) in
+            let setting = self.settings[indexPath.item]
+            self.homeController?.showControllerForSetting(setting: setting)
+        }
+        
     }
     
     override init() {

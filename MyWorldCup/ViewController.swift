@@ -111,12 +111,26 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         print (123)
     }
     
-    let settingsLauncher = SettingsLauncher()
+    //lazy var means this block of code only gets called if the settingsLauncher var is nil. Once it gets called and it's not nil, then it won't get called again. 
+    lazy var settingsLauncher: SettingsLauncher = {
+        let launcher = SettingsLauncher()
+        launcher.homeController = self
+        return launcher
+    }()
     
     @objc func handleMore() {
         settingsLauncher.showSettings()
     }
     
+    func showControllerForSetting(setting: Setting) {
+        let dummySettingsVC = UIViewController()
+        dummySettingsVC.view.backgroundColor = UIColor.white
+        dummySettingsVC.navigationItem.title = setting.name
+        navigationController?.navigationBar.tintColor = UIColor.white
+        //This is how to change the color of the text in the navbar
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+        navigationController?.pushViewController(dummySettingsVC, animated: true)
+    }
     
     let menuBar: MenuBar = {
         let mb = MenuBar()
