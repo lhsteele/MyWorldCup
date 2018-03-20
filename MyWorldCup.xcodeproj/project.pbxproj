@@ -14,6 +14,7 @@
 		EFA8864E20583E050009B5F9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EFA8864C20583E050009B5F9 /* LaunchScreen.storyboard */; };
 		EFA8865620599CCA0009B5F9 /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA8865520599CCA0009B5F9 /* MenuBar.swift */; };
 		EFA88658206063850009B5F9 /* SettingsLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA88657206063840009B5F9 /* SettingsLauncher.swift */; };
+		EFA8865A206179460009B5F9 /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA88659206179460009B5F9 /* SettingCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		EFA8864F20583E050009B5F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EFA8865520599CCA0009B5F9 /* MenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
 		EFA88657206063840009B5F9 /* SettingsLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLauncher.swift; sourceTree = "<group>"; };
+		EFA88659206179460009B5F9 /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 				EFA8864320583E050009B5F9 /* AppDelegate.swift */,
 				EFA8864520583E050009B5F9 /* ViewController.swift */,
 				EFA88657206063840009B5F9 /* SettingsLauncher.swift */,
+				EFA88659206179460009B5F9 /* SettingCell.swift */,
 				EFA8865520599CCA0009B5F9 /* MenuBar.swift */,
 				EFA8864720583E050009B5F9 /* Main.storyboard */,
 				EFA8864A20583E050009B5F9 /* Assets.xcassets */,
@@ -145,6 +148,7 @@
 				EFA88658206063850009B5F9 /* SettingsLauncher.swift in Sources */,
 				EFA8864620583E050009B5F9 /* ViewController.swift in Sources */,
 				EFA8864420583E050009B5F9 /* AppDelegate.swift in Sources */,
+				EFA8865A206179460009B5F9 /* SettingCell.swift in Sources */,
 				EFA8865620599CCA0009B5F9 /* MenuBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
