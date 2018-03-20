@@ -15,12 +15,25 @@ class SettingCell: BaseCell {
         setupViews()
     }
     
+    override var isHighlighted: Bool {
+        didSet {
+            backgroundColor = isHighlighted ? UIColor.darkGray : UIColor.white
+            
+            nameLabel.textColor = isHighlighted ? UIColor.white : UIColor.black
+            //If you want the iconImage to tint as well.
+            //iconImageView.tintColor = isHighlighted ? UIColor.white : UIColor.darkGray
+        }
+    }
+    
     var setting: Setting? {
         didSet {
             nameLabel.text = setting?.name
             
             if let imageName = setting?.imageName {
                 iconImageView.image = UIImage(named: imageName)
+                //If you want the iconImage to tint as well.
+                //iconImageView.image = UIImage(named: imageName)?.withRenderingMode(.alwaysTemplate)
+                //iconImageView.tintColor = UIColor.darkGray
             }
         }
     }
@@ -28,6 +41,7 @@ class SettingCell: BaseCell {
     let nameLabel: UILabel = {
         let label = UILabel()
         label.text = "Setting"
+        label.font = UIFont.systemFont(ofSize: 13)
         return label
     }()
     

@@ -29,14 +29,13 @@ class SettingsLauncher: NSObject, UICollectionViewDelegate, UICollectionViewData
     }()
     
     let cellId = "cellId"
+    let cellHeight: CGFloat = 50
     
     let settings: [Setting] = {
         return [Setting(name: "Settings", imageName: "settings1"), Setting(name: "Terms & Privacy", imageName: "mario"), Setting(name: "Send Feedback", imageName: "toad"), Setting(name: "Switch Account", imageName: "bowser"), Setting(name: "Cancel", imageName: "yoshi")]
     }()
     
     @objc func showSettings() {
-        //show menu
-        
         if let window = UIApplication.shared.keyWindow {
             
             blackView.backgroundColor = UIColor(white: 0, alpha: 0.5)
@@ -46,7 +45,7 @@ class SettingsLauncher: NSObject, UICollectionViewDelegate, UICollectionViewData
             window.addSubview(blackView)
             window.addSubview(collectionView)
             
-            let height: CGFloat = 200
+            let height: CGFloat = CGFloat(settings.count) * cellHeight
             let y = window.frame.height - height
             collectionView.frame = CGRect(x: 0, y: window.frame.height, width: window.frame.width, height: height)
             blackView.frame = window.frame
@@ -80,7 +79,7 @@ class SettingsLauncher: NSObject, UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: 50)
+        return CGSize(width: collectionView.frame.width, height: cellHeight)
     }
     
     //collection Views have a default setting for spacing. This reduces the spacing in between cells.
