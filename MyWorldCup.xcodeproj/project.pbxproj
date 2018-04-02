@@ -15,6 +15,7 @@
 		EFA8865620599CCA0009B5F9 /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA8865520599CCA0009B5F9 /* MenuBar.swift */; };
 		EFA88658206063850009B5F9 /* SettingsLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA88657206063840009B5F9 /* SettingsLauncher.swift */; };
 		EFA8865A206179460009B5F9 /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA88659206179460009B5F9 /* SettingCell.swift */; };
+		EFA8865C2072DD190009B5F9 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA8865B2072DD190009B5F9 /* FeedCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		EFA8865520599CCA0009B5F9 /* MenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
 		EFA88657206063840009B5F9 /* SettingsLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLauncher.swift; sourceTree = "<group>"; };
 		EFA88659206179460009B5F9 /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
+		EFA8865B2072DD190009B5F9 /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 			children = (
 				EFA8864320583E050009B5F9 /* AppDelegate.swift */,
 				EFA8864520583E050009B5F9 /* ViewController.swift */,
+				EFA8865B2072DD190009B5F9 /* FeedCell.swift */,
 				EFA88657206063840009B5F9 /* SettingsLauncher.swift */,
 				EFA88659206179460009B5F9 /* SettingCell.swift */,
 				EFA8865520599CCA0009B5F9 /* MenuBar.swift */,
@@ -150,6 +153,7 @@
 				EFA8864420583E050009B5F9 /* AppDelegate.swift in Sources */,
 				EFA8865A206179460009B5F9 /* SettingCell.swift in Sources */,
 				EFA8865620599CCA0009B5F9 /* MenuBar.swift in Sources */,
+				EFA8865C2072DD190009B5F9 /* FeedCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

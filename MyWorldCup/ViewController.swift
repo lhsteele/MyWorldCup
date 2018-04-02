@@ -46,6 +46,7 @@ class BaseCell: UICollectionViewCell {
 class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
     let cellId = "cellId"
+    let titles = ["Home", "Trending", "Subscriptions", "Account"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,7 +63,6 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         setupCollectionView()
         setupMenuBar()
         setupNavBarButtons()
-        fetchData()
     }
     
     func setupCollectionView() {
@@ -72,43 +72,16 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         }
         
         collectionView?.backgroundColor = UIColor.white
+
+        collectionView?.register(FeedCell.self, forCellWithReuseIdentifier: cellId)
         
-        collectionView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellId)
-        
-//        collectionView?.register(GroupsCell.self, forCellWithReuseIdentifier: "cellId")
-//        //The menubar is 50px high
+        //The menubar is 50px high
         collectionView?.contentInset = UIEdgeInsetsMake(50, 0, 0, 0)
         collectionView?.scrollIndicatorInsets = UIEdgeInsetsMake(50, 0, 0, 0)
         
         collectionView?.isPagingEnabled = true
     }
-    
-    func fetchData() {
-        let jsonURLString = "https://raw.githubusercontent.com/opendatajson/football.json/master/2016-17/en.1.clubs.json"
-        
-        guard let url = URL(string: jsonURLString) else { return }
-        
-        URLSession.shared.dataTask(with: url) { (data, response, error)
-            in
-            if error != nil {
-                print (error)
-                return
-            }
-            guard let data = data else { return }
-            
-            do {
-                let eplResults = try JSONDecoder().decode(EPL.self, from: data)
-                for item in eplResults.clubs {
-                    print (item.name)
-                }
-                
-                //self.collectionView?.reloadData()
-            } catch let jsonError {
-                print (jsonError)
-            }
-        } .resume()
-        
-    }
+
     
     func setupNavBarButtons() {
         let searchImage = UIImage(named: "search")
@@ -128,6 +101,14 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     func scrollToMenuIndex(menuIndex: Int) {
         let indexPath = NSIndexPath(item: menuIndex, section: 0)
         collectionView?.scrollToItem(at: indexPath as IndexPath, at: .centeredHorizontally, animated: true)
+        
+        setTitleForIndex(index: menuIndex)
+    }
+    
+    private func setTitleForIndex(index: Int) {
+        if let titleLabel = navigationItem.titleView as? UILabel {
+            titleLabel.text = "  \(titles[index])"
+        }
     }
     
     //lazy var means this block of code only gets called if the settingsLauncher var is nil. Once it gets called and it's not nil, then it won't get called again. 
@@ -182,6 +163,8 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         let indexPath = NSIndexPath(item: Int(index), section: 0)
         
         menuBar.collectionView.selectItem(at: indexPath as IndexPath, animated: true, scrollPosition: [])
+        
+        setTitleForIndex(index: Int(index))
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -191,34 +174,17 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
         
-        let colors: [UIColor] = [.blue, .green, .gray, .orange]
-        cell.backgroundColor = colors[indexPath.item]
+//        let colors: [UIColor] = [.blue, .green, .gray, .orange]
+//        cell.backgroundColor = colors[indexPath.item]
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: view.frame.height)
+        return CGSize(width: view.frame.width, height: view.frame.height - 50)
     }
 
-//    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return 8
-//    }
-//
-//    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath)
-//
-//        return cell
-//    }
-//
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        return CGSize(width: view.frame.width, height: 295)
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-//        return 0
-//    }
+
 }
 
 class GroupsCell: BaseCell {
