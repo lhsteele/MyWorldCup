@@ -174,9 +174,14 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        print(scrollView.contentOffset.x)
-        
         menuBar.horizontalBarLeftAnchorConstraint?.constant = scrollView.contentOffset.x / 4
+    }
+    
+    override func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        let index = targetContentOffset.pointee.x / view.frame.width
+        let indexPath = NSIndexPath(item: Int(index), section: 0)
+        
+        menuBar.collectionView.selectItem(at: indexPath as IndexPath, animated: true, scrollPosition: [])
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
