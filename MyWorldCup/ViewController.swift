@@ -8,44 +8,31 @@
 
 import UIKit
 
-struct EPL : Decodable {
-    let name : String
-    let clubs : [Clubs]
-    
-    enum CodingKeys: String, CodingKey {
-        case name, clubs
-    }
-    
-    struct Clubs: Decodable {
-        let name : String
-        let code : String
-        
-        enum CodingKeys: String, CodingKey {
-            case name, code
-        }
-    }
-}
+//struct EPL : Decodable {
+//    let name : String
+//    let clubs : [Clubs]
+//    
+//    enum CodingKeys: String, CodingKey {
+//        case name, clubs
+//    }
+//    
+//    struct Clubs: Decodable {
+//        let name : String
+//        let code : String
+//        
+//        enum CodingKeys: String, CodingKey {
+//            case name, code
+//        }
+//    }
+//}
 
-class BaseCell: UICollectionViewCell {
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setupViews()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    func setupViews() {
-        
-    }
-    
-    
-}
+
 
 class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
     let cellId = "cellId"
+    let trendingCellId = "trendingCellId"
+    let subscriptionCellId = "subscriptionCellId"
     let titles = ["Home", "Trending", "Subscriptions", "Account"]
     
     override func viewDidLoad() {
@@ -74,6 +61,8 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         collectionView?.backgroundColor = UIColor.white
 
         collectionView?.register(FeedCell.self, forCellWithReuseIdentifier: cellId)
+        collectionView?.register(TrendingCell.self, forCellWithReuseIdentifier: trendingCellId)
+        collectionView?.register(SubscriptionCell.self, forCellWithReuseIdentifier: subscriptionCellId)
         
         //The menubar is 50px high
         collectionView?.contentInset = UIEdgeInsetsMake(50, 0, 0, 0)
@@ -172,10 +161,17 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
+        let identifier: String
+        if indexPath.item == 1 {
+            identifier = trendingCellId
+        } else if indexPath.item == 2 {
+            identifier = subscriptionCellId
+        } else {
+            identifier = cellId
+        }
+
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
         
-//        let colors: [UIColor] = [.blue, .green, .gray, .orange]
-//        cell.backgroundColor = colors[indexPath.item]
         
         return cell
     }
@@ -187,100 +183,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
 
 }
 
-class GroupsCell: BaseCell {
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setupViews()
-    }
-    
-    let groupName: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "A"
-        label.textColor = UIColor.black
-        label.textAlignment = .center
-        label.backgroundColor = UIColor.gray
-        label.layer.cornerRadius = 15
-        label.clipsToBounds = true
-        return label
-    }()
-    
-    let team1: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Egypt"
-        label.textColor = UIColor.black
-        label.textAlignment = .center
-        label.backgroundColor = UIColor.orange
-        label.layer.cornerRadius = 15
-        label.clipsToBounds = true
-        return label
-    }()
-    
-    let team2: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Russia"
-        label.textColor = UIColor.black
-        label.textAlignment = .center
-        label.backgroundColor = UIColor.orange
-        label.layer.cornerRadius = 15
-        label.clipsToBounds = true
-        return label
-    }()
-    
-    let team3: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Saudi Arabia"
-        label.textColor = UIColor.black
-        label.textAlignment = .center
-        label.backgroundColor = UIColor.orange
-        label.layer.cornerRadius = 15
-        label.clipsToBounds = true
-        return label
-    }()
-    
-    let team4: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Uruguay"
-        label.textColor = UIColor.black
-        label.textAlignment = .center
-        label.backgroundColor = UIColor.orange
-        label.layer.cornerRadius = 15
-        label.clipsToBounds = true
-        return label
-    }()
-    
-    //This is to put the line in between cells, take out later.
-    let separatorView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor.black
-        return view
-    }()
-    
-    override func setupViews() {
-        addSubview(groupName)
-        addSubview(team1)
-        addSubview(team2)
-        addSubview(team3)
-        addSubview(team4)
-        addSubview(separatorView)
-        
-        addConstraintsWithFormat(format: "H:|-16-[v0]-16-|", views: groupName)
-        addConstraintsWithFormat(format: "H:|-16-[v0]-16-|", views: team1)
-        addConstraintsWithFormat(format: "H:|-16-[v0]-16-|", views: team2)
-        addConstraintsWithFormat(format: "H:|-16-[v0]-16-|", views: team3)
-        addConstraintsWithFormat(format: "H:|-16-[v0]-16-|", views: team4)
-        addConstraintsWithFormat(format: "V:|-16-[v0(30)]-8-[v1(50)]-8-[v2(50)]-8-[v3(50)]-8-[v4(50)]-16-[v5(1)]|", views: groupName, team1, team2, team3, team4, separatorView)
-        addConstraintsWithFormat(format: "H:|[v0]|", views: separatorView)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
+
 
 //this extension allows us to simplify the code above for setting constraints.
 extension UIView {

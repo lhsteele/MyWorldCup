@@ -18,12 +18,24 @@ class FeedCell: BaseCell, UICollectionViewDataSource, UICollectionViewDelegate, 
         return cv
     }()
     
+    var teams: [Clubs] = {
+        var one = Clubs()
+        one.clubName = "Liverpool"
+        one.code = "LIV"
+        
+        var two = Clubs()
+        two.clubName = "Everton"
+        two.code = "EVE"
+        
+        return [one, two]
+    }()
+    
     let cellId = "cellId"
     
-    
     func fetchData() {
-        let jsonURLString = "https://raw.githubusercontent.com/opendatajson/football.json/master/2016-17/en.1.clubs.json"
+        //let jsonURLString = "https://raw.githubusercontent.com/opendatajson/football.json/master/2016-17/en.1.clubs.json"
         
+        let jsonURLString = "https://raw.githubusercontent.com/opendatajson/football.json/master/2016-17/en.1.clubs.json"
         guard let url = URL(string: jsonURLString) else { return }
         
         URLSession.shared.dataTask(with: url) { (data, response, error)
@@ -35,23 +47,22 @@ class FeedCell: BaseCell, UICollectionViewDataSource, UICollectionViewDelegate, 
             guard let data = data else { return }
             
             do {
-                let eplResults = try JSONDecoder().decode(EPL.self, from: data)
-                for item in eplResults.clubs {
-                    print (item.name)
-                }
+//                let eplResults = try JSONDecoder().decode(EPL.self, from: data)
+//                for item in eplResults.clubs {
+//                    print (item.name)
+//                }
                 
                 //self.collectionView.reloadData()
             } catch let jsonError {
                 print (jsonError)
             }
+ 
             } .resume()
-        
     }
     
     override func setupViews() {
         super.setupViews()
         fetchData()
-        backgroundColor = .brown
         
         addSubview(collectionView)
         addConstraintsWithFormat(format: "H:|[v0]|", views: collectionView)
@@ -61,15 +72,15 @@ class FeedCell: BaseCell, UICollectionViewDataSource, UICollectionViewDelegate, 
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-            return 8
+        return teams.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath)
-    
+           // let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath)
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! GroupsCell
+            cell.epl = teams[indexPath.item]
             return cell
     }
-    
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
             return CGSize(width: frame.width, height: 295)
