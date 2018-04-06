@@ -9,18 +9,18 @@
 import UIKit
 
 
-class PL: NSObject {
-    var league: String?
-}
-
-class Clubs: NSObject {
-    var clubName: String?
-    var code: String?
-}
+//class PL: NSObject {
+//    var league: String?
+//}
+//
+//class Clubs: NSObject {
+//    var clubName: String?
+//    var code: String?
+//}
 
 //class EPL : Decodable {
-//    let name : String?
-//    let clubs : [Clubs]? = nil
+//    var name : String
+//    var clubs : String
 //
 //    enum CodingKeys: String, CodingKey {
 //        case name, clubs
@@ -28,11 +28,12 @@ class Clubs: NSObject {
 //}
 //
 //class Clubs: Decodable {
-//    var name : String?
-//    var code : String?
+//    var name : String
+//    var code : String
 //
 //    enum CodingKeys: String, CodingKey {
 //        case name, code
 //    }
 //}
+
 

@@ -35,7 +35,7 @@ class GroupsCell: BaseCell {
     
         var epl: Clubs? {
             didSet {
-                clubName.text = epl?.clubName
+                clubName.text = epl?.name
                 clubCode.text = epl?.code
             }
         }

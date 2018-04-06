@@ -20,6 +20,7 @@
 		EFA88664207549250009B5F9 /* SubscriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA88663207549250009B5F9 /* SubscriptionCell.swift */; };
 		EFA8866620756F000009B5F9 /* EPL.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA8866520756F000009B5F9 /* EPL.swift */; };
 		EFA8866A2075D18C0009B5F9 /* GroupsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA886692075D18C0009B5F9 /* GroupsCell.swift */; };
+		EFA8866C2075E3A90009B5F9 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA8866B2075E3A90009B5F9 /* ApiService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		EFA88663207549250009B5F9 /* SubscriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionCell.swift; sourceTree = "<group>"; };
 		EFA8866520756F000009B5F9 /* EPL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPL.swift; sourceTree = "<group>"; };
 		EFA886692075D18C0009B5F9 /* GroupsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsCell.swift; sourceTree = "<group>"; };
+		EFA8866B2075E3A90009B5F9 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,7 @@
 			isa = PBXGroup;
 			children = (
 				EFA8864320583E050009B5F9 /* AppDelegate.swift */,
+				EFA8866B2075E3A90009B5F9 /* ApiService.swift */,
 				EFA886692075D18C0009B5F9 /* GroupsCell.swift */,
 				EFA8866520756F000009B5F9 /* EPL.swift */,
 				EFA8864520583E050009B5F9 /* ViewController.swift */,
@@ -166,6 +169,7 @@
 				EFA8864620583E050009B5F9 /* ViewController.swift in Sources */,
 				EFA8864420583E050009B5F9 /* AppDelegate.swift in Sources */,
 				EFA8866A2075D18C0009B5F9 /* GroupsCell.swift in Sources */,
+				EFA8866C2075E3A90009B5F9 /* ApiService.swift in Sources */,
 				EFA88664207549250009B5F9 /* SubscriptionCell.swift in Sources */,
 				EFA8865A206179460009B5F9 /* SettingCell.swift in Sources */,
 				EFA8865620599CCA0009B5F9 /* MenuBar.swift in Sources */,

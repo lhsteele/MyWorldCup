@@ -8,23 +8,26 @@
 
 import UIKit
 
-//struct EPL : Decodable {
-//    let name : String
-//    let clubs : [Clubs]
-//    
-//    enum CodingKeys: String, CodingKey {
-//        case name, clubs
-//    }
-//    
-//    struct Clubs: Decodable {
-//        let name : String
-//        let code : String
-//        
-//        enum CodingKeys: String, CodingKey {
-//            case name, code
-//        }
-//    }
-//}
+struct EPL : Decodable {
+    let name : String
+    let clubs = [Clubs]()
+    
+    enum CodingKeys: String, CodingKey {
+        case name, clubs
+    }
+}
+
+struct Clubs: Decodable {
+    let name : String
+    let code : String
+    
+    enum CodingKeys: String, CodingKey {
+        case name, code
+    }
+    
+}
+
+
 
 
 
@@ -61,8 +64,8 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         collectionView?.backgroundColor = UIColor.white
 
         collectionView?.register(FeedCell.self, forCellWithReuseIdentifier: cellId)
-        collectionView?.register(TrendingCell.self, forCellWithReuseIdentifier: trendingCellId)
-        collectionView?.register(SubscriptionCell.self, forCellWithReuseIdentifier: subscriptionCellId)
+        //collectionView?.register(TrendingCell.self, forCellWithReuseIdentifier: trendingCellId)
+        //collectionView?.register(SubscriptionCell.self, forCellWithReuseIdentifier: subscriptionCellId)
         
         //The menubar is 50px high
         collectionView?.contentInset = UIEdgeInsetsMake(50, 0, 0, 0)
