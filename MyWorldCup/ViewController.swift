@@ -10,7 +10,8 @@ import UIKit
 
 struct EPL : Decodable {
     let name : String
-    let clubs = [Clubs]()
+    let clubs : [Clubs]
+    
     
     enum CodingKeys: String, CodingKey {
         case name, clubs
@@ -24,12 +25,15 @@ struct Clubs: Decodable {
     enum CodingKeys: String, CodingKey {
         case name, code
     }
-    
 }
 
-
-
-
+extension Clubs {
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        name = try values.decode(String.self, forKey: .name)
+        code = try values.decode(String.self, forKey: .code)
+    }
+}
 
 class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 

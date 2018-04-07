@@ -27,23 +27,22 @@ class BaseCell: UICollectionViewCell {
 
 class GroupsCell: BaseCell {
 
-        
+//
 //        override init(frame: CGRect) {
 //            super.init(frame: frame)
 //            //setupViews()
 //        }
     
-        var epl: Clubs? {
+        var clubList: EPL? {
             didSet {
-                clubName.text = epl?.name
-                clubCode.text = epl?.code
+                clubName.text = clubList?.name
             }
         }
         
-        var clubName: UILabel = {
+        var leagueName: UILabel = {
             let label = UILabel()
             label.translatesAutoresizingMaskIntoConstraints = false
-            //label.text = "Premier League"
+            label.text = "Premier League"
             label.textColor = UIColor.black
             label.textAlignment = .center
             label.backgroundColor = UIColor.gray
@@ -52,7 +51,7 @@ class GroupsCell: BaseCell {
             return label
         }()
         
-        let clubCode: UILabel = {
+        let clubName: UILabel = {
             let label = UILabel()
             label.translatesAutoresizingMaskIntoConstraints = false
             label.text = "Egypt"
@@ -108,19 +107,19 @@ class GroupsCell: BaseCell {
         }()
         
         override func setupViews() {
+            addSubview(leagueName)
             addSubview(clubName)
-            addSubview(clubCode)
             addSubview(team2)
             addSubview(team3)
             addSubview(team4)
             addSubview(separatorView)
             
+            addConstraintsWithFormat(format: "H:|-16-[v0]-16-|", views: leagueName)
             addConstraintsWithFormat(format: "H:|-16-[v0]-16-|", views: clubName)
-            addConstraintsWithFormat(format: "H:|-16-[v0]-16-|", views: clubCode)
             addConstraintsWithFormat(format: "H:|-16-[v0]-16-|", views: team2)
             addConstraintsWithFormat(format: "H:|-16-[v0]-16-|", views: team3)
             addConstraintsWithFormat(format: "H:|-16-[v0]-16-|", views: team4)
-            addConstraintsWithFormat(format: "V:|-16-[v0(30)]-8-[v1(50)]-8-[v2(50)]-8-[v3(50)]-8-[v4(50)]-16-[v5(1)]|", views: clubName, clubCode, team2, team3, team4, separatorView)
+            addConstraintsWithFormat(format: "V:|-16-[v0(30)]-8-[v1(50)]-8-[v2(50)]-8-[v3(50)]-8-[v4(50)]-16-[v5(1)]|", views: leagueName, clubName, team2, team3, team4, separatorView)
             addConstraintsWithFormat(format: "H:|[v0]|", views: separatorView)
         }
 

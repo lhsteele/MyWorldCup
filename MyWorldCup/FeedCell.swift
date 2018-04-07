@@ -31,13 +31,13 @@ class FeedCell: BaseCell, UICollectionViewDataSource, UICollectionViewDelegate, 
 //    }()
     
     let cellId = "cellId"
-    var plClubs = [Clubs]()
+    var clubList: [Clubs] = []
     
     func fetchData() {
         let jsonURLString = "https://raw.githubusercontent.com/opendatajson/football.json/master/2016-17/en.1.clubs.json"
         guard let url = URL(string: jsonURLString) else { return }
         
-        URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error)
+        URLSession.shared.dataTask(with: url) { (data, response, error)
             in
             if error != nil {
                 print (error)
@@ -46,35 +46,16 @@ class FeedCell: BaseCell, UICollectionViewDataSource, UICollectionViewDelegate, 
             guard let data = data else { return }
             
             do {
-                let eplResults = try JSONDecoder().decode(EPL.self, from: data)
-                for item in eplResults.clubs {
-                    let club = item.name
-                    self.plClubs.append(club)
-                    //print (item.name)
+                //This code works in printing out the team names.
+//                let eplResults = try JSONDecoder().decode(EPL.self, from: data)
+//                for item in eplResults.clubs {
+//                    print (item.name)
                 }
-                    
                     //self.collectionView.reloadData()
-
-//                let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers)
-//
-//                var results = [Clubs]()
-//
-//                for dictionary in json as! [String: AnyObject] {
-//                    let leagueName = Clubs()
-//                    leagueName.name = dictionary["name"] as? String
-//
-//                    let clubs = dictionary["clubs"]
-//                    print (clubs)
-//
-////                    let clubName = Clubs()
-////                    clubName.name = dictionary["name"] as? String
-//
-////                    results.append(clubName)
-////                    print (results)
-            } catch let jsonError {
+            catch let jsonError {
                 print (jsonError)
             }
-        }) .resume()
+        } .resume()
 
     }
     
@@ -90,16 +71,14 @@ class FeedCell: BaseCell, UICollectionViewDataSource, UICollectionViewDelegate, 
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        //return 2
+        return 2
         //return teams.count
-        return plClubs.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath)
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! GroupsCell
-        cell.epl = plClubs[indexPath.item]
-//        cell.epl = teams[indexPath.item]
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath)
+//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! GroupsCell
+ //        cell.epl = teams[indexPath.item]
         
         return cell
     }
