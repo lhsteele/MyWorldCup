@@ -19,11 +19,11 @@ struct EPL : Decodable {
 }
 
 struct Clubs: Decodable {
-    let name : String
-    let code : String
+    var name : String
+    //var code : String
     
     enum CodingKeys: String, CodingKey {
-        case name, code
+        case name//, code
     }
 }
 
@@ -31,7 +31,7 @@ extension Clubs {
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         name = try values.decode(String.self, forKey: .name)
-        code = try values.decode(String.self, forKey: .code)
+        //code = try values.decode(String.self, forKey: .code)
     }
 }
 

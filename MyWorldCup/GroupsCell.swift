@@ -33,7 +33,7 @@ class GroupsCell: BaseCell {
 //            //setupViews()
 //        }
     
-        var clubList: EPL? {
+        var clubList: Clubs? {
             didSet {
                 clubName.text = clubList?.name
             }

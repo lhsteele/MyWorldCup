@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class FeedCell: BaseCell, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -31,12 +32,13 @@ class FeedCell: BaseCell, UICollectionViewDataSource, UICollectionViewDelegate, 
 //    }()
     
     let cellId = "cellId"
-    var clubList: [Clubs] = []
+    var plClubs = [Clubs]()
     
     func fetchData() {
+
         let jsonURLString = "https://raw.githubusercontent.com/opendatajson/football.json/master/2016-17/en.1.clubs.json"
         guard let url = URL(string: jsonURLString) else { return }
-        
+
         URLSession.shared.dataTask(with: url) { (data, response, error)
             in
             if error != nil {
@@ -44,19 +46,20 @@ class FeedCell: BaseCell, UICollectionViewDataSource, UICollectionViewDelegate, 
                 return
             }
             guard let data = data else { return }
-            
+
             do {
-                //This code works in printing out the team names.
-//                let eplResults = try JSONDecoder().decode(EPL.self, from: data)
-//                for item in eplResults.clubs {
-//                    print (item.name)
+                let eplResults = try JSONDecoder().decode(EPL.self, from: data)
+                for item in eplResults.clubs {
+                    let club = item.name
+                    var plClub = Clubs(name: club)
+                    self.plClubs.append(plClub)
                 }
-                    //self.collectionView.reloadData()
-            catch let jsonError {
+                //print (self.plClubs)
+
+            } catch let jsonError {
                 print (jsonError)
             }
         } .resume()
-
     }
     
     override func setupViews() {
