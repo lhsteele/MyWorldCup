@@ -33,6 +33,7 @@ class FeedCell: BaseCell, UICollectionViewDataSource, UICollectionViewDelegate, 
     
     let cellId = "cellId"
     var plClubs = [Clubs]()
+    //var plClubs: [Clubs]?
     
     func fetchData() {
 
@@ -54,7 +55,7 @@ class FeedCell: BaseCell, UICollectionViewDataSource, UICollectionViewDelegate, 
                     var plClub = Clubs(name: club)
                     self.plClubs.append(plClub)
                 }
-                //print (self.plClubs)
+                print (self.plClubs)
 
             } catch let jsonError {
                 print (jsonError)
@@ -75,13 +76,15 @@ class FeedCell: BaseCell, UICollectionViewDataSource, UICollectionViewDelegate, 
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 2
-        //return teams.count
+        //print ("count\(plClubs.count)")
+        //return plClubs.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath)
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! GroupsCell
- //        cell.epl = teams[indexPath.item]
+        //let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! GroupsCell
+        //print (plClubs)
+        //cell.clubList = plClubs[indexPath.item]
         
         return cell
     }
